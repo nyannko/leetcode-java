@@ -8,7 +8,6 @@ class NumberOfIslands {
         int count = 0;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                System.out.println(grid[i][j] + " " + i + " " + j);
                 if (grid[i][j] == '1') {
                     dfs(grid, i, j);
                     count++;
