@@ -1,4 +1,4 @@
-class Solution {
+class BinarySearch {
     public int search(int[] nums, int target) {
         int first = 0;
         int last = nums.length - 1;
@@ -16,7 +16,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution a = new Solution();
+        BinarySearch a = new BinarySearch();
         int[] arr = {-1, 0, 3, 5, 9, 12};
         System.out.println(a.search(arr, 13));
     }
