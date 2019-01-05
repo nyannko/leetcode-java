@@ -11,18 +11,17 @@ public class PalindromePartitioning {
     }
 
     public void dfs(String s, List<String> cur) {
-        if(s.length() == 0) {
+        if (s.length() == 0) {
             result.add(cur);
             return;
         }
         for (int i = 1; i <= s.length(); i++) {
             String sub = s.substring(0, i);
-            if(isPal(sub)) {
+            if (isPal(sub)) {
                 List<String> newList = new ArrayList<String>(cur);
                 newList.add(sub);
                 dfs(s.substring(i, s.length()), newList);
-            }
-            else {
+            } else {
                 continue;
             }
         }
