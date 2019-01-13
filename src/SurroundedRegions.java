@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SurroundedRegions {
     public void solve(char[][] board) {
         if (board.length == 0) {
@@ -41,10 +43,11 @@ public class SurroundedRegions {
         char[][] board1 = {{'X', 'X', 'X', 'X'}, {'X', 'O', 'O', 'X'}, {'X', 'X', 'O', 'X'}, {'X', 'O', 'X', 'X'}};
         SurroundedRegions s = new SurroundedRegions();
         s.solve(board1);
-        for (char[] aBoard1 : board1) {
-            for (int j = 0; j < board1[0].length; j++) {
-                System.out.println(aBoard1[j]);
-            }
-        }
+        System.out.println(Arrays.deepToString(board1));
+//        for (char[] aBoard1 : board1) {
+//            for (int j = 0; j < board1[0].length; j++) {
+//                System.out.println(aBoard1[j]);
+//            }
+//        }
     }
 }

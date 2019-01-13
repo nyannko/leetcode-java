@@ -40,6 +40,9 @@ class Point {
 
 class Solution {
     public int maxPoints(Point[] points) {
+        if (points.length <= 2) {
+            return points.length;
+        }
         int result = 0;
         int size = points.length;
         Map<Point, Integer> map = new HashMap<>();
@@ -61,7 +64,6 @@ class Solution {
                 if (map.containsKey(t)) {
                     int count = map.get(t) + 1;
                     map.put(t, count);
-
                 } else {
                     map.put(t, 1);
                 }
@@ -77,6 +79,37 @@ class Solution {
             return i;
         }
         return getGCD(j, i % j);
+    }
+
+    public int maxPoints2(Point[] points) {
+        if (points == null) {
+            return 0;
+        }
+
+        if (points.length <= 2) {
+            return points.length;
+        }
+        int result = 2;
+        for (int i = 1; i < points.length; i++) {
+            int count = 0;
+            long a = points[i].x;
+            long b = points[i].y;
+            long dx = a - points[i - 1].x;
+            long dy = b - points[i - 1].y;
+            if (dx == 0 && dy == 0) {
+                for (int j = 0; j < points.length; j++) {
+                    if (points[j].x == a && points[j].y == b)
+                        count++;
+                }
+            } else {
+                for (int j = 0; j < points.length; j++) {
+                    if ((points[j].x - a) * dy == (points[j].y - b) * dx)
+                        count++;
+                }
+            }
+            result = Math.max(result, count);
+        }
+        return result;
     }
 
     public static void main(String[] args) {
