@@ -61,12 +61,15 @@ class Solution {
                 dx /= gcd;
                 dy /= gcd;
                 Point t = new Point(dx, dy);
-                if (map.containsKey(t)) {
-                    int count = map.get(t) + 1;
-                    map.put(t, count);
-                } else {
-                    map.put(t, 1);
-                }
+                // alternative to if-else
+                Integer count = map.get(t);
+                map.put(t, map.get(t) == null ? 1 : count + 1);
+//                if (map.containsKey(t)) {
+//                    int count = map.get(t) + 1;
+//                    map.put(t, count);
+//                } else {
+//                    map.put(t, 1);
+//                }
                 curmax = Math.max(curmax, map.get(t));
             }
             result = Math.max(result, curmax + overlap + 1);
