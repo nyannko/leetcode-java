@@ -54,8 +54,7 @@ class BinarySearch {
 
     // same with search 1
     public int search4(int[] nums, int target) {
-        int l = 0,
-                r = nums.length - 1;
+        int l = 0, r = nums.length - 1;
         return dfs(nums, l, r, target);
     }
 
@@ -70,7 +69,6 @@ class BinarySearch {
         } else {
             return dfs(nums, m + 1, r, target);
         }
-
     }
 
     public static void main(String[] args) {
