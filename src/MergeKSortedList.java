@@ -1,3 +1,5 @@
+import util.ListNode;
+
 import java.util.*;
 
 public class MergeKSortedList {
@@ -35,15 +37,13 @@ public class MergeKSortedList {
     // heap
     public ListNode mergeKLists2(ListNode[] lists) {
         if (lists.length == 0) return null;
-        PriorityQueue<ListNode> q = new PriorityQueue<>(lists.length, new Comparator<ListNode>() {
-            public int compare(ListNode l1, ListNode l2) {
-                if (l1.val < l2.val) {
-                    return -1;
-                } else if (l1.val == l2.val) {
-                    return 0;
-                } else {
-                    return 1;
-                }
+        PriorityQueue<ListNode> q = new PriorityQueue<>(lists.length, (l1, l2) -> {
+            if (l1.val < l2.val) {
+                return -1;
+            } else if (l1.val == l2.val) {
+                return 0;
+            } else {
+                return 1;
             }
         });
 
@@ -62,7 +62,34 @@ public class MergeKSortedList {
                 q.add(head.next);
             }
         }
-
         return dummy.next;
+    }
+
+    public ListNode mergeKLists3(ListNode[] lists) {
+        return partition(lists, 0, lists.length - 1);
+    }
+
+    public ListNode partition(ListNode[] lists, int l, int r) {
+        if (l == r) return lists[l];
+        else if (l < r) {
+            int m = (l + r) >>> 1;
+            ListNode l1 = partition(lists, l, m);
+            ListNode l2 = partition(lists, m + 1, r);
+            return merge2List(l1, l2);
+        }
+        return null;
+    }
+
+
+    public static void main(String[] args) {
+        MergeKSortedList m = new MergeKSortedList();
+        ListNode a = new ListNode(1);
+        a.next = new ListNode(4);
+        ListNode b = new ListNode(2);
+        b.next = new ListNode(3);
+        ListNode c = new ListNode(5);
+        c.next = new ListNode(7);
+        ListNode[] l = {a, b, c};
+        m.mergeKLists3(l);
     }
 }

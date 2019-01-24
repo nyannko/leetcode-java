@@ -1,3 +1,5 @@
+import util.ListNode;
+
 public class SwapNodesInPairs {
     public ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0);

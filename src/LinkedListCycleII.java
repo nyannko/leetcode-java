@@ -1,3 +1,5 @@
+import util.ListNode;
+
 public class LinkedListCycleII {
     public ListNode detectCycle(ListNode head) {
         ListNode entry = head,

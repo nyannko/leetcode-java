@@ -1,3 +1,5 @@
+import util.ListNode;
+
 public class PalindromeLinkedList {
     public boolean isPalindrome(ListNode head) {
         // split

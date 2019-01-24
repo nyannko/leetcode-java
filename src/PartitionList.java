@@ -1,3 +1,5 @@
+import util.ListNode;
+
 public class PartitionList {
     public ListNode partition(ListNode head, int x) {
         ListNode l = new ListNode(0), r = new ListNode(0);

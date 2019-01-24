@@ -1,3 +1,5 @@
+import util.ListNode;
+
 public class MiddleOfTheLinkedList {
     public ListNode middleNode(ListNode head) {
         ListNode fast = head, slow = head;
