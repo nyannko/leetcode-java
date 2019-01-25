@@ -1,10 +1,7 @@
 public class SymmtricTree {
     public boolean isSymmetric(TreeNode root) {
-        if (root == null) {
-            return true;
-        } else {
-            return dfs(root.left, root.right);
-        }
+        if (root == null) return true;
+        return dfs(root.left, root.right);
     }
 
     public boolean dfs(TreeNode left, TreeNode right) {
