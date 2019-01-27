@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.LinkedList;
 
 /**
  * Definition for a binary tree node.
@@ -10,16 +10,15 @@ import java.util.Stack;
  * }
  */
 class BSTIterator {
-
-    private Stack<TreeNode> stack;
+    private LinkedList<TreeNode> stack;
     private TreeNode root;
 
     public BSTIterator(TreeNode root) {
-        stack = new Stack<>();
+        stack = new LinkedList<>();
         this.root = root;
         while (this.root != null) {
-            stack.add(root);
-            this.root = root.left;
+            stack.push(this.root);
+            this.root = this.root.left;
         }
     }
 
@@ -27,9 +26,9 @@ class BSTIterator {
      * @return the next smallest number
      */
     public int next() {
-        if (stack != null || root != null) {
+        if (!stack.isEmpty() || root != null) {
             while (root != null) {
-                stack.add(root);
+                stack.push(root);
                 root = root.left;
             }
             if (root == null) {
@@ -45,7 +44,7 @@ class BSTIterator {
      * @return whether we have a next smallest number
      */
     public boolean hasNext() {
-        if (stack.empty() && root == null) {
+        if (stack.isEmpty() && root == null) {
             return false;
         }
         return true;

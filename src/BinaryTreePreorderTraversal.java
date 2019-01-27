@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -29,10 +30,10 @@ public class BinaryTreePreorderTraversal {
 
     public List<Integer> preorderTraversal3(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        Stack<TreeNode> s = new Stack<>();
-        if (root != null) s.add(root);
+        LinkedList<TreeNode> s = new LinkedList<>();
+        if (root != null) s.push(root);
 
-        while (!s.empty()) {
+        while (!s.isEmpty()) {
             TreeNode node = s.pop();
             res.add(node.val);
             if (node.right != null) s.push(node.right);

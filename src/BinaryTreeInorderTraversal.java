@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -19,12 +20,12 @@ public class BinaryTreeInorderTraversal {
 
     public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
         TreeNode node = root;
 
-        while (node != null || !stack.empty()) {
+        while (node != null || !stack.isEmpty()) {
             while (node != null) {
-                stack.add(node);
+                stack.push(node);
                 node = node.left;
             }
             node = stack.pop();
