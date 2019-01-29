@@ -8,4 +8,14 @@ public class LowestCommonAncestorofaBinaryTree {
         }
         return (l == null) ? r : l;
     }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) return root;
+        root.left = lowestCommonAncestor(root.left, p, q);
+        root.right = lowestCommonAncestor(root.right, p, q);
+        if (root.left != null && root.right != null) {
+            return root;
+        }
+        return (root.left == null) ? root.right : root.left;
+    }
 }

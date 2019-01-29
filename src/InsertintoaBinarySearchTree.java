@@ -47,6 +47,6 @@ public class InsertintoaBinarySearchTree {
                 }
             }
         }
-        return root;
+        return (root != null) ? root : node;
     }
 }
