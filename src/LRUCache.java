@@ -79,7 +79,7 @@ class LRUCache2 {
     public LRUCache2(int capacity) {
         this.capacity = capacity;
         map = new LinkedHashMap<>(capacity, 0.75f, true) { // remove by access order
-            // true if eldest element should be removed
+            // return true if eldest element should be removed
             // (when self.size larger than capacity)
             protected boolean removeEldestEntry(Map.Entry eldest) {
                 return size() > capacity;
