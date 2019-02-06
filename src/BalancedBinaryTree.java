@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class BalancedBinaryTree {
     public boolean isBalanced(TreeNode root) {
         int val = getDepth(root);

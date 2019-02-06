@@ -1,11 +1,5 @@
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int val) {
-        this.val = val;
-    }
-}
+import util.TreeNode;
+
 public class SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {
@@ -17,6 +11,7 @@ public class SameTree {
         return p.val == q.val &&
                 isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
+
     public static void main(String[] args) {
         TreeNode p = new TreeNode(10);
         p.left = new TreeNode(11);

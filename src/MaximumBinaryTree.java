@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class MaximumBinaryTree {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         return dfs(nums, 0, nums.length - 1);

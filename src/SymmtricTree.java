@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class SymmtricTree {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;

@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class ConstructBinaryTreefromInorderandPostorderTraversal {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         return buildTree(inorder, postorder, inorder.length - 1, 0, postorder.length - 1);

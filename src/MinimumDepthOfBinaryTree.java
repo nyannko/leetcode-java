@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class MinimumDepthOfBinaryTree {
     public int minDepth(TreeNode root) {
         if (root == null) return 0;

@@ -23,6 +23,24 @@ public class AddTwoNumbers {
         return head.next;
     }
 
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(0);
+        ListNode dummy = head;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry == 1) {
+            int v1 = (l1 != null) ? l1.val : 0;
+            int v2 = (l2 != null) ? l2.val : 0;
+            int value = v1 + v1 + carry;
+            head.next = new ListNode(value % 10);
+            carry = value / 10;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+            head = head.next;
+        }
+        return dummy.next;
+    }
+
     public static void main(String[] args) {
         int[] val1 = {2, 4, 3};
         int[] val2 = {5, 6, 4};

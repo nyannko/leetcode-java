@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class IncreasingOrderSearchTree {
     public TreeNode increasingBST(TreeNode root) {
         return dfs(root, null);

@@ -1,6 +1,9 @@
+import util.TreeNode;
+
 public class ConvertSortedArraytoBinarySearchTree {
     public TreeNode sortedArrayToBST(int[] nums) {
-        return dfs(nums, 0, nums.length - 1);
+        TreeNode dfs = dfs(nums, 0, nums.length - 1);
+        return dfs;
     }
 
     public TreeNode dfs(int[] nums, int l, int r) {

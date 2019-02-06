@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class SumRoottoLeafNumbers {
     public int sumNumbers(TreeNode root) {
         return dfs(root, 0);

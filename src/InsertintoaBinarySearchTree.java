@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class InsertintoaBinarySearchTree {
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);

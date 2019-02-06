@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class FlattenBinaryTreetoLinkedList {
     public void flatten(TreeNode root) {
         if (root == null) return;

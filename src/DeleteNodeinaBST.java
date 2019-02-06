@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class DeleteNodeinaBST {
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) return null;

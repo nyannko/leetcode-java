@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class TrimaBinarySearchTree {
     public TreeNode trimBST(TreeNode root, int L, int R) {
         if (root == null) return null;

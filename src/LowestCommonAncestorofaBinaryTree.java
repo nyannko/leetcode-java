@@ -1,3 +1,5 @@
+import util.TreeNode;
+
 public class LowestCommonAncestorofaBinaryTree {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) return root;
