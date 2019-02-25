@@ -92,8 +92,8 @@ public class QuickSort {
 
     public void sort(int[] nums, int l, int r) {
         if (l >= r) return;
-        int pivot = nums[l];
-//        int pivot = rand(nums, l, r);
+//        int pivot = nums[l];
+        int pivot = rand(nums, l, r);
 //        int pivot = middleOfThree(nums, l, r);
         int start = l, end = r;
         while (l < r) {
@@ -114,10 +114,11 @@ public class QuickSort {
         sort(nums, l + 1, end);
     }
 
-    public int rand(int nums[], int l, int r) {
+    public int rand(int[] nums, int l, int r) {
         Random random = new Random();
         int randomIndex = random.nextInt(r - l + 1) + l;
-        return nums[randomIndex];
+        swap(nums, l, randomIndex);
+        return nums[l];
     }
 
     public int middleOfThree(int[] nums, int l, int r) {
@@ -184,7 +185,7 @@ public class QuickSort {
 //        int[] a = {10, 10, 10, 10, 10};
 //        int[] a = {12, 6, 18, 18, 1,1,2};
         QuickSort q = new QuickSort();
-        q.sort3(a, 0, a.length - 1);
+        q.sort(a, 0, a.length - 1);
 //        int[] a = {10, 10, 10, 10, 10, 8, 9, 7, 6, 2, 1, 11};
 //        int[] b = Arrays.copyOf(a, a.length);
 //        int[] c = Arrays.copyOf(a, a.length);

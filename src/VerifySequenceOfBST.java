@@ -1,7 +1,7 @@
 public class VerifySequenceOfBST {
     // verify post order
     public static boolean verifySequenceOfBST(int[] sequence) {
-        if (sequence == null) return false;
+        if (sequence == null || sequence.length == 0) return false;
         // left < mid < right
         return dfs(sequence, 0, sequence.length - 1);
     }
@@ -36,7 +36,7 @@ public class VerifySequenceOfBST {
 
     // verify preorder: different boundary
     public static boolean verifySequenceOfBST1(int[] sequence) {
-        if (sequence == null) return false;
+        if (sequence == null || sequence.length == 0) return false;
         // left < mid < right
         return dfs1(sequence, 0, sequence.length - 1);
     }
