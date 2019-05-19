@@ -135,7 +135,7 @@ public class MaxHeap {
         MaxHeap heap1 = new MaxHeap(100);
         MaxHeap heap2 = new MaxHeap(nums, nums.length);
         MaxHeap heap3 = new MaxHeap(100);
-        // test diff heap sort
+        // getString diff heap sort
         heap1.heapSort1(nums);
         heap2.heapSort2();
         heap3.heapSort3(nums);

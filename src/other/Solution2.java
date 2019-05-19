@@ -94,7 +94,7 @@ public class Solution2 {
     }
 
     //https://paste.ubuntu.com/p/zrftPBmJvm/
-    // test
+    // getString
 //3
 //2
 //1 2

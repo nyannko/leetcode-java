@@ -67,7 +67,7 @@ public class Team {
                 + dfs(board, i - 1, j + 1)
                 + dfs(board, i - 1, j - 1);
     }
-    //test case, 6, 8
+    //getString case, 6, 8
 //10,10
 //0,0,0,0,0,0,0,0,0,0
 //0,0,0,1,1,0,1,0,0,0

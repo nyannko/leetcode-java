@@ -169,11 +169,11 @@ public class MaxHeapV2 {
         MaxHeapV2 heap = new MaxHeapV2(100);
         MaxHeapV2 heap2 = new MaxHeapV2(nums, nums.length);
         MaxHeapV2 heap3 = new MaxHeapV2(100);
-        // test heap sort 1
+        // getString heap sort 1
         heap.heapSort1(nums);
         heap2.heapSort2();
         heap3.heapSort3(nums);
-        // test heap
+        // getString heap
 //        System.out.println(heap.size);
 //        for (int i : nums) {
 //            heap.insert(i);

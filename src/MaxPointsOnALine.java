@@ -125,6 +125,6 @@ class Solution {
         list[4] = new Point(2, 3);
         list[5] = new Point(1, 4);
         System.out.println(a.maxPoints(list));
-        System.out.println(new Point(1, 1).equals(new Point(1, 1))); // test equals
+        System.out.println(new Point(1, 1).equals(new Point(1, 1))); // getString equals
     }
 }

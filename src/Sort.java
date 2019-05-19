@@ -15,6 +15,23 @@ public class Sort {
         return arr;
     }
 
+    public static int[] nearlySortedArray(int n, int swapTimes) {
+        Random rand = new Random();
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = i;
+        }
+        // swap several pairs in a sorted array
+        for (int i = 0; i < swapTimes; i++) {
+            int x = rand.nextInt(n); // the upper bound is exclusive
+            int y = rand.nextInt(n);
+            while (y == x)          // maybe add this to reduce self duplications
+                y = rand.nextInt(n);
+            swap(nums, x, y);
+        }
+        return nums;
+    }
+
     public static boolean isSorted(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i + 1] < arr[i])
@@ -29,7 +46,7 @@ public class Sort {
         nums[b] = tmp;
     }
 
-    public static void insertionSort(int[] nums) {
+    public static void insertionSort1(int[] nums) {
         for (int i = 1; i < nums.length; i++) {
             int key = nums[i];
             int j = i - 1;
@@ -41,7 +58,30 @@ public class Sort {
         }
     }
 
-    public static void insertionSort1(int[] nums) {
+    public static void insertionSort1_1(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            int key = nums[i];
+            int j = i;
+            while (j > 0 && nums[j - 1] > key) {
+                nums[j] = nums[j - 1]; // shift bigger number to right
+                j--; // compare previous
+            }
+            nums[j] = key;
+        }
+    }
+
+    public static void insertionSort1_2(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            int key = nums[i];
+            int j;
+            for (j = i; j > 0 && nums[j - 1] > key; j--) {
+                nums[j] = nums[j - 1]; // shift bigger number to right
+            }
+            nums[j] = key;
+        }
+    }
+
+    public static void insertionSort2(int[] nums) {
         for (int i = 1; i < nums.length; i++) {
             for (int j = i; j > 0 && nums[j - 1] > nums[j]; j--) {
                 swap(nums, j, j - 1);
@@ -70,15 +110,26 @@ public class Sort {
     }
 
     public static void main(String[] args) throws Exception {
-        // create two test arrays
+        // create two getString arrays
         int length = 100000;
-        int[] nums = Sort.randomArray(length, 1, length);
-        int[] copy1 = new int[length];
-        System.arraycopy(nums, 0, copy1, 0, length);
-        int[] copy2 = Arrays.copyOf(nums, length); // easier than system.arraycopy
+        String[] func = {"insertionSort1", "insertionSort1_1", "insertionSort1_2",
+                "insertionSort2", "selectionSort"};
+        int[] random = Sort.randomArray(length, 1, length);
+        int[] dummy = Arrays.copyOf(random, length);
+        System.out.println("Dummy call:");
+        Sort.testSort("insertionSort1", dummy); // dummy call
+        // System.arraycopy(random, 0, copy1, 0, length); //alternatives
+        System.out.println("Test Random Array:");
+        for (int i = 0; i < func.length; i++) {
+            int[] c = Arrays.copyOf(random, length);
+            Sort.testSort(func[i], c);
+        }
 
-        Sort.testSort("insertionSort", nums);
-        Sort.testSort("insertionSort1", copy1);
-        Sort.testSort("selectionSort", copy2);
+        System.out.println("Test Nearly Sorted Array:");
+        int[] sorted = Sort.nearlySortedArray(length, 10);
+        for (int i = 0; i < func.length; i++) {
+            int[] s = Arrays.copyOf(sorted, length);
+            Sort.testSort(func[i], s);
+        }
     }
 }
