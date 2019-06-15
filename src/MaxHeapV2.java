@@ -41,7 +41,7 @@ public class MaxHeapV2 {
 
     public void insert(int node) {
         assert (this.size + 1 <= cap);
-        // insert a new node
+        // insertDFS a new node
         this.size++;
         elem[this.size] = node;
         // shift up
@@ -176,7 +176,7 @@ public class MaxHeapV2 {
         // getString heap
 //        System.out.println(heap.size);
 //        for (int i : nums) {
-//            heap.insert(i);
+//            heap.insertDFS(i);
 //        }
 //        System.out.println(heap.size == nums.length);
 //        heap.getHeap();

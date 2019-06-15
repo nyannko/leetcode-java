@@ -8,7 +8,7 @@ public class ReverseString {
         }
     }
 
-    public void reverString(char[] s) {
+    public void reverseString1(char[] s) {
         dfs(s, 0, s.length - 1);
     }
 
