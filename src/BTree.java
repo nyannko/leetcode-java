@@ -9,7 +9,7 @@ class BTree {
     }
 
     private class Node {
-        int num;
+        private int num;
         // num < M. if num > M: split node
         Child[] children = new Child[M]; // a list of children
 
@@ -52,17 +52,17 @@ class BTree {
 
         // search external nodes
         if (height == 0) {
-            for (int i = 0; i < children.length; i++) {
-                if (key == getKey(children[i]))
+            for (int i = 0; i < node.num; i++) {
+                if (key == children[i].key)
                     return children[i].val;
             }
         }
 
         // search internal nodes
         else {
-            for (int i = 0; i < children.length; i++) {
+            for (int i = 0; i < node.num; i++) {
                 // compare i with i + 1; or going down to the last node
-                if (i + 1 == size || key < getKey(children[i + 1])) {
+                if (i + 1 == node.num || key < children[i + 1].key) {
                     return search(children[i].next, key, height - 1);
                 }
             }
@@ -79,8 +79,8 @@ class BTree {
 
         // split root node
         Node newRoot = new Node(2);
-        newRoot.children[0] = new Child(getKey(root.children[0]), 0, root);
-        newRoot.children[1] = new Child(getKey(newNode.children[0]), 0, newNode);
+        newRoot.children[0] = new Child(root.children[0].key, 0, root);
+        newRoot.children[1] = new Child(newNode.children[0].key, 0, newNode);
         root = newRoot;
         height++;
     }
@@ -88,23 +88,20 @@ class BTree {
     private Node insert(Node node, int key, int val, int height) {
         int pointer; // record the place to insert key
         Child newChild = new Child(key, val, null);
-        Child[] children = node.children;
-        int ChildNum = node.children.length;
-        int actualChildLength = node.num;
 
         // external node
         if (height == 0) {
-            for (pointer = 0; pointer < ChildNum - 1; pointer++) {
-                if (key < getKey(children[pointer])) break;
+            for (pointer = 0; pointer < node.num; pointer++) {
+                if (key < node.children[pointer].key) break;
             }
         }
 
         // internal node
         else {
-            for (pointer = 0; pointer < ChildNum; pointer++) {
+            for (pointer = 0; pointer < node.num; pointer++) {
                 // key between child[pointer] and child[pointer + 1] or last child
-                if (key < children[pointer + 1].key || (pointer + 1 == ChildNum)) {
-                    Node fromLowLevel = insert(children[pointer].next, key, val, height - 1);
+                if ((pointer + 1 == node.num) || key < node.children[pointer + 1].key) {
+                    Node fromLowLevel = insert(node.children[pointer].next, key, val, height - 1);
                     pointer++;
                     if (fromLowLevel == null) return null;
                     newChild.key = fromLowLevel.children[0].key;
@@ -115,35 +112,33 @@ class BTree {
         }
 
         // add new element and check
-        for (int i = actualChildLength; i > pointer; i--) {
-            children[i] = children[i - 1]; // right shift elements
+        for (int i = node.num; i > pointer; i--) {
+            node.children[i] = node.children[i - 1]; // right shift elements
         }
-        children[pointer] = newChild; // insert new Child
+        node.children[pointer] = newChild; // insert new Child
         node.num++; // length increment
-        // check overflow
+        // check degree overflow
         if (node.num < M) return null;
         else return split(node);
     }
 
     // copy and return the last part
     private Node split(Node original) {
-        Node last = new Node(M / 2);
-        for (int i = 0; i < M / 2; i++) {
+        int lastNum = (int) Math.ceil((double) M / 2); // second part is larger if M is odd
+        Node last = new Node(lastNum);
+        original.num = M / 2;
+        for (int i = 0; i < lastNum; i++) {
             last.children[i] = original.children[M / 2 + i];
         }
         return last;
     }
 
-    private int getKey(Child c) {
-        if (c == null) return 0;
-        else return c.key;
-    }
-
     public static void main(String[] args) {
         BTree b = new BTree();
-        b.put(1, 2);
-        b.put(2, 3);
-        System.out.println(b.get(3));
+        for (int i = 1; i < 10; i++) {
+            b.put(i, i);
+            System.out.println("Find value: " + b.get(i));
+        }
     }
 
 }
