@@ -9,7 +9,7 @@ public class ReverseLinkedList {
             prev = head;
             head = tmp;
         }
-        return prev.next;
+        return prev;
     }
 
     public ListNode reverseListRecursion(ListNode head) {
@@ -27,18 +27,11 @@ public class ReverseLinkedList {
     }
 
     public static void main(String[] args) {
-        ListNode node = new ListNode(0);
-        ListNode head = node;
-        for (int i = 1; i < 6; i++) {
-            node.next = new ListNode(i);
-            node = node.next;
-        }
+        int[] arr = {1, 2, 3, 4, 5};
+        ListNode head = ListNode.createLinkedList(arr);
+        ListNode.printLinkedList(head);
         ReverseLinkedList r = new ReverseLinkedList();
-//        r.reverseList(head);
-        r.reverseListRecursion(head);
-        while (node != null) {
-            System.out.println(node.val);
-            node = node.next;
-        }
+        ListNode.printLinkedList(r.reverseList(head));
     }
 }
+
