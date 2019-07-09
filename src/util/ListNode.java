@@ -18,6 +18,7 @@ public class ListNode {
         }
         return dummy.next;
     }
+
     public static void printLinkedList(ListNode head) {
         ListNode cur = head;
         StringBuffer res = new StringBuffer();
