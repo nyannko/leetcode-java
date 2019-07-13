@@ -28,9 +28,25 @@ public class LongestSubstringWithoutRepeatingCharacter {
         return ans;
     }
 
+    public int lengthOfLongestSubstring2(String s) {
+        int[] index = new int[128];
+        int res = 0, i = 0, j = 0;
+        while (i < s.length()) {
+            if (j < s.length() && index[s.charAt(j)] == 0) {
+                index[s.charAt(j)]++;
+                j++;
+                res = Math.max(res, j - i);
+            } else {
+                index[s.charAt(i)]--;
+                i++;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         String str = "abcabcbb";
         LongestSubstringWithoutRepeatingCharacter l = new LongestSubstringWithoutRepeatingCharacter();
-        System.out.println(l.lengthOfLongestSubstring1(str));
+        System.out.println(l.lengthOfLongestSubstring2(str));
     }
 }

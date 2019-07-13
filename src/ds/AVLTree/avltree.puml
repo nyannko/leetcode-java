@@ -1,0 +1,40 @@
+@startuml
+
++class AVLTree<K, V> {
+-class Node
+-Node root
+-int size
++AVLTree(K key, V value)
+
++boolean isEmpty()
++int getSize()
++int getBalanceFactor()
++int getHeight()
+
++void add(K key, V value)
+-void add(Node node, K key, V value)
++V get(K key)
++boolean contains(K key)
++void set(K key, V value)
+-Node getNode(Node node, K key)
++void remove()
+
++isBST()
+-inOrder(Node node, List<K> keys)
++isBalancedTree()
+-isBalancedTree(Node node)
+}
+
+-class Node {
+-K key
+-V value
+-Node left
+-Node right
+-int height
++Node(K key, V value)
+}
+
+Node -left-* AVLTree : Node
+Node o-down- Node
+
+@enduml

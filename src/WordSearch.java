@@ -4,8 +4,40 @@ public class WordSearch {
         System.out.println(wordSearch(board, ""));
         System.out.println(wordSearch(board, "ABCCED"));
         System.out.println(wordSearchTable(board, "SEE"));
-
     }
+
+    private static boolean[][] visited;
+    private static final int[][] distance = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    public static boolean wordSearchWithTable(char[][] board, String s) {
+        if (board == null || board.length == 0 || board[0].length == 0) return false;
+//        if (s == null || s.length() == 0) return false;
+
+        visited = new boolean[board.length][board[0].length];
+        char[] letters = s.toCharArray();
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (dfs2(board, i, j, letters, 0)) return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean dfs2(char[][] board, int i, int j, char[] letters, int pointer) {
+        if (pointer == letters.length) return true;
+        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length || board[i][j] != letters[pointer] || visited[i][j])
+            return false;
+        visited[i][j] = true;
+        for (int k = 0; k < 4; k++) {
+            int newX = i + distance[k][0];
+            int newY = j + distance[k][1];
+            if (dfs2(board, newX, newY, letters, pointer + 1)) return true;
+        }
+        visited[i][j] = false;
+        return false;
+    }
+
 
     public static boolean wordSearch(char[][] board, String word) {
         // boundary check

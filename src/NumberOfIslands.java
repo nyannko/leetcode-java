@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class NumberOfIslands {
     public int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) return 0;
@@ -29,6 +31,7 @@ class NumberOfIslands {
 
     private static final int[][] dis = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private static boolean[][] visited;
+
     // another boolean visited array with int direction array
     public int numIslands1(char[][] grid) {
         // check boundary
@@ -66,7 +69,7 @@ class NumberOfIslands {
         NumberOfIslands a = new NumberOfIslands();
         char[][] grid = {{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}};
         System.out.println(a.numIslands(grid));
-        System.out.println(a.numIslands1(grid));
+        System.out.println(Arrays.deepToString(grid));
     }
 
 }
