@@ -6,7 +6,7 @@ public class InsertintoaBinarySearchTree {
 
         if (root.val > val) {
             root.left = insertIntoBST(root.left, val);
-        } else {
+        } else if (root.val < val) {
             root.right = insertIntoBST(root.right, val);
         }
         return root;

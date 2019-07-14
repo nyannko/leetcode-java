@@ -1,6 +1,9 @@
 package ds.AVLTree;
 
+import ds.BSTree.BSTree;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AVLTree<K extends Comparable<K>, V> {
 
@@ -61,11 +64,60 @@ public class AVLTree<K extends Comparable<K>, V> {
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
 
         // calculate balanced factor
-        int balanceFactor = getBalancedFactor(node);
-        System.out.println("unbalanced: " + balanceFactor);
+        int balanceFactor = getBalanceFactor(node);
+        // System.out.println("unbalanced: " + balanceFactor);
+
+        // return LL
+        if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0)
+            return rightRotate(node);
+
+        // return RR
+        if (balanceFactor < -1 && getBalanceFactor(node.right) <= 0)
+            return leftRotate(node);
+
+        // return LR
+        if (balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        // return RL
+        if (balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
 
         return node;
     }
+
+    private Node rightRotate(Node y) {
+        Node x = y.left;
+        Node newLeft = x.right;
+
+        x.right = y;
+        y.left = newLeft;
+
+        // update height of y, x
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
+    private Node leftRotate(Node y) {
+        Node x = y.right;
+        Node newRight = x.left;
+
+        x.left = y;
+        y.right = newRight;
+
+        // update height of y, x
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
 
     public boolean contains(K key) {
         return getNode(root, key) != null;
@@ -88,7 +140,7 @@ public class AVLTree<K extends Comparable<K>, V> {
     private Node getNode(Node node, K key) {
         if (node == null) return null;
 
-        if (node.key.equals(key)) {
+        if (node.key.equals(key)) { // notice use .equals()
             return node;
         } else if (key.compareTo(node.key) < 0) {
             return getNode(node.left, key);
@@ -98,17 +150,17 @@ public class AVLTree<K extends Comparable<K>, V> {
     }
 
     // H(left) - H(right)
-    private int getBalancedFactor(Node node) {
+    private int getBalanceFactor(Node node) {
         return getHeight(node.left) - getHeight(node.right);
     }
 
     public boolean isBST() {
-       ArrayList<K> keys = new ArrayList<>();
-       inOrder(root, keys);
-       for (int i = 1; i < keys.size(); i++) {
+        ArrayList<K> keys = new ArrayList<>();
+        inOrder(root, keys);
+        for (int i = 1; i < keys.size(); i++) {
             if (keys.get(i).compareTo(keys.get(i - 1)) < 0) return false;
-       }
-       return true;
+        }
+        return true;
     }
 
     private void inOrder(Node node, ArrayList<K> keys) {
@@ -125,7 +177,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 
     private boolean isBalancedTree(Node node) {
         if (node == null) return true;
-        int balanceFactor = getBalancedFactor(node);
+        int balanceFactor = getBalanceFactor(node);
         if (Math.abs(balanceFactor) <= 1) {
             return isBalancedTree(node.left) && isBalancedTree(node.right);
         }
@@ -138,8 +190,30 @@ public class AVLTree<K extends Comparable<K>, V> {
 
         if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
             AVLTree<String, Integer> avl = new AVLTree<>();
+            BSTree<String, Integer> bst = new BSTree<>();
+            Collections.sort(words); // binary search tree resembles linked list(degenerate tree)
 
-            // store unique words into the tree
+            long startTime, timeElapsed;
+
+            startTime = System.nanoTime();
+            // store unique words into binary search tree
+            for (String word : words) {
+                if (!bst.contains(word)) {
+                    bst.add(word, 1);
+                } else {
+                    bst.add(word, bst.get(word) + 1);
+                }
+            }
+
+            for (String word : words) {
+                bst.contains(word);
+            }
+
+            timeElapsed = (System.nanoTime() - startTime) / 1000000000;
+            System.out.println("BST: " + timeElapsed + "s");
+
+            startTime = System.nanoTime();
+            // store unique words into AVL tree
             for (String word : words) {
                 if (!avl.contains(word)) {
                     avl.add(word, 1);
@@ -148,12 +222,26 @@ public class AVLTree<K extends Comparable<K>, V> {
                 }
             }
 
+            // search word
+            for (String word : words) {
+                avl.contains(word);
+            }
+
+            timeElapsed = (System.nanoTime() - startTime) / 1000000000;
+            System.out.println("AVL: " + timeElapsed + "s");
+
+            // test result
+            // BST: 17s
+            // AVL: 0s
+
             System.out.println("Unique words:" + avl.getSize());
             System.out.println("Frequency of PRIDE: " + avl.get("pride"));
             System.out.println("Frequency of PREJUDICE: " + avl.get("prejudice"));
 
-            System.out.println("is Binary search tree: " + avl.isBST());
-            System.out.println("is Balanced tree: " + avl.isBalancedTree());
+            System.out.println("is Binary search tree: " + avl.isBST()); // true
+            System.out.println("is Balanced tree: " + avl.isBalancedTree()); // true
         }
+
+
     }
 }

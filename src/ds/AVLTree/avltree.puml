@@ -23,6 +23,9 @@
 -inOrder(Node node, List<K> keys)
 +isBalancedTree()
 -isBalancedTree(Node node)
+
+-leftRotate(Node node)
+-rightRotate(Node node)
 }
 
 -class Node {
@@ -34,7 +37,7 @@
 +Node(K key, V value)
 }
 
-Node -left-* AVLTree : Node
-Node o-down- Node
+Node <-left-* AVLTree : Node
+Node *-down-> Node
 
 @enduml
