@@ -15,7 +15,7 @@ public class testMyContainers {
                 set.add(word);
             }
             System.out.println("Total words: " + set.size());
-            
+
             for (String word : words) {
                 if (!set.contains(word)) throw new NoSuchElementException();
             }

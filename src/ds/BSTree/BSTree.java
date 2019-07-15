@@ -1,14 +1,11 @@
 package ds.BSTree;
 
-import java.util.ArrayList;
-
 public class BSTree<K extends Comparable<K>, V> {
 
     private class Node {
         private K key;
         private V value;
-        private Node left;
-        private Node right;
+        private Node left, right;
         private int height;
 
         Node(K key, V value) {
@@ -54,7 +51,7 @@ public class BSTree<K extends Comparable<K>, V> {
         } else if (key.compareTo(node.key) > 0) {
             node.right = add(node.right, key, value);
         } else {
-            node.value = value;
+            node.value = value; // update value
         }
 
         return node;
