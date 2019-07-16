@@ -1,3 +1,5 @@
+package sort;
+
 public class StopWatch {
 
     private long startTime = 0;
@@ -14,8 +16,8 @@ public class StopWatch {
 
     public void stop() {
         stopTime = System.currentTimeMillis();
-        System.out.println("StopWatch: " + getElapsedTime() + " milliseconds.");
-        System.out.println("StopWatch: " + getElapsedTimeSecs() + " seconds.");
+        System.out.println("sort.StopWatch: " + getElapsedTime() + " milliseconds.");
+        System.out.println("sort.StopWatch: " + getElapsedTimeSecs() + " seconds.");
     }
 
     /**
@@ -23,8 +25,8 @@ public class StopWatch {
      */
     public void stop(String process_name) {
         stopTime = System.currentTimeMillis();
-        System.out.println(process_name + " StopWatch: " + getElapsedTime() + " milliseconds.");
-        System.out.println(process_name + " StopWatch: " + getElapsedTimeSecs() + " seconds.");
+        System.out.println(process_name + " sort.StopWatch: " + getElapsedTime() + " milliseconds.");
+        System.out.println(process_name + " sort.StopWatch: " + getElapsedTimeSecs() + " seconds.");
     }
 
     //elaspsed time in milliseconds

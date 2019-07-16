@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package sort;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -172,7 +173,7 @@ public class QuickSort {
 
     }
 
-//    public static void measureTime(int[] nums, QuickSort q) {
+//    public static void measureTime(int[] nums, sort.QuickSort q) {
 //        long startTime = System.nanoTime();
 //        q.sort(nums, 0, nums.length - 1);
 //        long endTime = System.nanoTime() - startTime;
@@ -191,7 +192,7 @@ public class QuickSort {
 //        int[] c = Arrays.copyOf(a, a.length);
 //        int[] d = Arrays.copyOf(a, a.length);
 //
-//        QuickSort q = new QuickSort();
+//        sort.QuickSort q = new sort.QuickSort();
 //
 //        q.partition1(a, 0, a.length - 1); // [10, 6, 1, 11, 0, 5, 12, 15]
 //        q.partition2(b, 0, b.length - 1); // [10, 6, 1, 11, 0, 5, 12, 15]
