@@ -1,47 +1,47 @@
-package ds.AVLTree;
+package ds.RBTree;
 
 import ds.util.MyMap;
 
-public class AVLMap<K extends Comparable<K>, V> implements MyMap<K, V> {
+public class RBMap<K extends Comparable<K>, V> implements MyMap<K, V> {
 
-    private AVLTree<K, V> avl;
+    RBTree<K, V> map;
 
-    public AVLMap() {
-        avl = new AVLTree<>();
+    public RBMap() {
+        map = new RBTree<>();
     }
 
     @Override
     public boolean isEmpty() {
-        return avl.isEmpty();
+        return map.isEmpty();
     }
 
     @Override
     public int size() {
-        return avl.getSize();
+        return map.getSize();
     }
 
     @Override
     public void put(K key, V value) {
-        avl.add(key, value);
+        map.add(key, value);
     }
 
     @Override
     public V get(K key) {
-        return avl.get(key);
+        return map.get(key);
     }
 
     @Override
     public void remove(K key) {
-        avl.remove(key);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void set(K key, V value) {
-        avl.set(key, value);
+        map.set(key, value);
     }
 
     @Override
     public boolean contains(K key) {
-        return avl.contains(key);
+        return map.contains(key);
     }
 }

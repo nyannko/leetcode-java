@@ -1,4 +1,4 @@
-package ds.AVLTree;
+package ds.util;
 
 public interface MyMap<K, V> {
     boolean isEmpty();

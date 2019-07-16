@@ -19,7 +19,7 @@ public class RuntimeTest {
         return (System.currentTimeMillis() - start) / 1000.0;
     }
 
-    // test different input for simple O(n) algorithm
+    // TestKV different input for simple O(n) algorithm
     public static void testDiffInput() {
         for (int i = 1; i < 11; i++) {
             double n = Math.pow(10, i);

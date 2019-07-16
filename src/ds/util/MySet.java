@@ -1,4 +1,4 @@
-package ds.AVLTree;
+package ds.util;
 
 public interface MySet<E> {
     boolean isEmpty();

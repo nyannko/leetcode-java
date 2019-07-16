@@ -303,7 +303,7 @@ public class AVLTree<K extends Comparable<K>, V> {
             timeElapsed = (System.nanoTime() - startTime) / 1000000000;
             System.out.println("AVL: " + timeElapsed + "s");
 
-            // test result
+            // TestKV result
             // BST: 17.011717567s
             // AVL: 0.065272355s
         }
