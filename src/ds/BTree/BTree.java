@@ -1,6 +1,8 @@
 package ds.BTree;
 
-class BTree {
+import java.util.ArrayList;
+
+class BTree<K extends Comparable<K>, V> {
     private static final int M = 3; // number of degree(children)
     private Node root;
     private int height;
@@ -13,19 +15,22 @@ class BTree {
     private class Node {
         private int num;
         // num < M. if num > M: split node
-        Child[] children = new Child[M]; // a list of children
+//        Child[] children = new Child[M]; // a list of children
+        // use list to avoid creating generics arrays
+        ArrayList<Child> children;
 
         public Node(int num) { // the number of children
             this.num = num;
+            children = new ArrayList<>();
         }
     }
 
     private class Child {
-        private int key;
-        private int val;
+        private K key;
+        private V val;
         private Node next;
 
-        public Child(int key, int val, Node node) {
+        public Child(K key, V val, Node node) {
             this.key = key;
             this.val = val;
             this.next = node;
@@ -44,19 +49,20 @@ class BTree {
         return size;
     }
 
-    public int get(int key) {
+    public V get(K key) {
         // range check here
         return search(root, key, height);
     }
 
-    private int search(Node node, int key, int height) {
-        Child[] children = node.children;
+    private V search(Node node, K key, int height) {
+//        Child[] children = node.children;
+        ArrayList<Child> children = node.children;
 
         // search external nodes
         if (height == 0) {
             for (int i = 0; i < node.num; i++) {
-                if (key == children[i].key)
-                    return children[i].val;
+                if (key == children.get(i).key)
+                    return children.get(i).val;
             }
         }
 
@@ -64,16 +70,16 @@ class BTree {
         else {
             for (int i = 0; i < node.num; i++) {
                 // compare i with i + 1; or going down to the last node
-                if (i + 1 == node.num || key < children[i + 1].key) {
-                    return search(children[i].next, key, height - 1);
+                if (i + 1 == node.num || key.compareTo(children.get(i + 1).key) < 0) {
+                    return search(children.get(i).next, key, height - 1);
                 }
             }
         }
-        return -1; // not found
+        return null; // not found
     }
 
 
-    public void put(int key, int val) {
+    public void put(K key, V val) {
         // range check here
         Node newNode = insert(root, key, val, height);
         size++;
@@ -81,20 +87,20 @@ class BTree {
 
         // split root node
         Node newRoot = new Node(2);
-        newRoot.children[0] = new Child(root.children[0].key, 0, root);
-        newRoot.children[1] = new Child(newNode.children[0].key, 0, newNode);
+        newRoot.children.add(0, new Child(root.children.get(0).key, null, root));
+        newRoot.children.add(1, new Child(newNode.children.get(0).key, null, newNode));
         root = newRoot;
         height++;
     }
 
-    private Node insert(Node node, int key, int val, int height) {
+    private Node insert(Node node, K key, V val, int height) {
         int pointer; // record the place to insert key
         Child newChild = new Child(key, val, null);
 
         // external node
         if (height == 0) {
             for (pointer = 0; pointer < node.num; pointer++) {
-                if (key < node.children[pointer].key) break;
+                if (key.compareTo(node.children.get(pointer).key) < 0) break;
             }
         }
 
@@ -102,11 +108,11 @@ class BTree {
         else {
             for (pointer = 0; pointer < node.num; pointer++) {
                 // key between child[pointer] and child[pointer + 1] or last child
-                if ((pointer + 1 == node.num) || key < node.children[pointer + 1].key) {
-                    Node fromLowLevel = insert(node.children[pointer].next, key, val, height - 1);
+                if ((pointer + 1 == node.num) || key.compareTo(node.children.get(pointer + 1).key) < 0) {
+                    Node fromLowLevel = insert(node.children.get(pointer).next, key, val, height - 1);
                     pointer++;
                     if (fromLowLevel == null) return null;
-                    newChild.key = fromLowLevel.children[0].key;
+                    newChild.key = fromLowLevel.children.get(0).key;
                     newChild.next = fromLowLevel;
                     break;
                 }
@@ -115,9 +121,9 @@ class BTree {
 
         // add new element and check
         for (int i = node.num; i > pointer; i--) {
-            node.children[i] = node.children[i - 1]; // right shift elements
+            node.children.add(i, node.children.get(i - 1)); // right shift elements
         }
-        node.children[pointer] = newChild; // insert new Child
+        node.children.add(pointer, newChild); // insert new Child
         node.num++; // length increment
         // check degree overflow
         if (node.num < M) return null;
@@ -130,7 +136,7 @@ class BTree {
         Node last = new Node(lastNum);
         original.num = M / 2;
         for (int i = 0; i < lastNum; i++) {
-            last.children[i] = original.children[M / 2 + i];
+            last.children.add(i, original.children.get(M / 2 + i));
         }
         return last;
     }
@@ -142,5 +148,4 @@ class BTree {
             System.out.println("Find value: " + b.get(i));
         }
     }
-
 }

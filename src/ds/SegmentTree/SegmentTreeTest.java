@@ -15,7 +15,7 @@ public class SegmentTreeTest {
         System.out.println(segTree.query(0, 7)); //28
         System.out.println(segTree.query(2, 5)); //14
         segTree.update(7, 10);
-        System.out.println(segTree.query(0, 7)); //28
+        System.out.println(segTree.query(0, 7)); //31
         System.out.println(segTree);
 //        Exceptions:
 //        System.out.println(segTree.query(-1, 5));

@@ -2,7 +2,7 @@ package ds.BTree;
 
 import java.lang.reflect.Array;
 
-public class TestKV<E> {
+public class KVTest<E> {
     private E[] arr;
 
     public E[] createArr(Class<E> type, int len) {
@@ -15,7 +15,7 @@ public class TestKV<E> {
     }
 
     public static void main(String[] args) {
-        TestKV<String> foo = new TestKV<>();
+        KVTest<String> foo = new KVTest<>();
         String[] arr = foo.createArr(String.class, 2);
     }
 }
