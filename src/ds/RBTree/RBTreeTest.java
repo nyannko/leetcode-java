@@ -2,7 +2,7 @@ package ds.RBTree;
 
 // check visualization in
 // http://inst.eecs.berkeley.edu/~cs61b/fa17/materials/demos/ll-red-black-demo.html
-public class testRBTree {
+public class RBTreeTest {
     public static void main(String[] args) {
         int[][] test = {{6, 2}, {8, 6}, {6, 2, 3}, {6, 3, 2}, {6, 8, 1, 2, 3}, {6, 8, 3, 2, 1},
                 {6, 8, 9, 1, 3, 12, 20, 24, 10, 11}};

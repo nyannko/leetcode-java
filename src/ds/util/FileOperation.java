@@ -1,6 +1,6 @@
 // taken from https://raw.githubusercontent.com/liuyubobobo/Play-with-Data-Structures/master/12-AVL-Tree/02-Calculating
 // -Balance-Factor/src/FileOperation.java
-package ds.AVLTree;
+package ds.util;
 
 import java.io.BufferedInputStream;
 import java.io.File;

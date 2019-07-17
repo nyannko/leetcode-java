@@ -93,7 +93,7 @@ public class MaxHeap {
         for (int i = length - 1; i >= 0; i--) {
             res[i] = remove();
         }
-        System.out.println("Heap sort.Sort 1: " + Arrays.toString(res));
+        System.out.println("Heap Sort 1: " + Arrays.toString(res));
     }
 
     // use the heapify constructor
@@ -102,7 +102,7 @@ public class MaxHeap {
         for (int i = size - 1; i >= 0; i--) {
             res[i] = remove();
         }
-        System.out.println("Heap sort.Sort 2: " + Arrays.toString(res));
+        System.out.println("Heap Sort 2: " + Arrays.toString(res));
     }
 
     // in-place
@@ -117,7 +117,7 @@ public class MaxHeap {
             swap(nums, 0, i); // swap the largest to the last place
             inplaceShiftDown(nums, i, 0);
         }
-        System.out.println("Heap sort.Sort 3: " + Arrays.toString(nums));
+        System.out.println("Heap Sort 3: " + Arrays.toString(nums));
     }
 
     public void inplaceShiftDown(int[] nums, int length, int index) {

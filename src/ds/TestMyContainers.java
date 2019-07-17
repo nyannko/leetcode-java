@@ -3,7 +3,7 @@ package ds;
 import ds.AVLTree.AVLMap;
 import ds.AVLTree.AVLSet;
 import ds.AVLTree.AVLTree;
-import ds.AVLTree.FileOperation;
+import ds.util.FileOperation;
 import ds.BSTree.BSTree;
 import ds.RBTree.RBMap;
 import ds.RBTree.RBSet;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
-public class testMyContainers {
+public class TestMyContainers {
 
     public static double testPerformance(MySet<String> set, boolean flag) {
         ArrayList<String> words = new ArrayList<>();
