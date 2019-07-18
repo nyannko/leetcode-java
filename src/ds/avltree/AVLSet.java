@@ -1,4 +1,4 @@
-package ds.AVLTree;
+package ds.avltree;
 
 import ds.util.MySet;
 

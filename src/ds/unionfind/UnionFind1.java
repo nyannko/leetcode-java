@@ -1,4 +1,4 @@
-package ds.UnionFind;
+package ds.unionfind;
 
 public class UnionFind1 implements UF {
 

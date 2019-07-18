@@ -1,4 +1,4 @@
-package ds.RBTree;
+package ds.rbtree;
 
 // check visualization in
 // http://inst.eecs.berkeley.edu/~cs61b/fa17/materials/demos/ll-red-black-demo.html

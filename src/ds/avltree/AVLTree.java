@@ -1,6 +1,6 @@
-package ds.AVLTree;
+package ds.avltree;
 
-import ds.BSTree.BSTree;
+import ds.bstree.BSTree;
 import ds.util.FileOperation;
 
 import java.util.ArrayList;

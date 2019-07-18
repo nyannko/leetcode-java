@@ -1,13 +1,13 @@
 package ds;
 
-import ds.AVLTree.AVLMap;
-import ds.AVLTree.AVLSet;
-import ds.AVLTree.AVLTree;
+import ds.avltree.AVLMap;
+import ds.avltree.AVLSet;
+import ds.avltree.AVLTree;
 import ds.util.FileOperation;
-import ds.BSTree.BSTree;
-import ds.RBTree.RBMap;
-import ds.RBTree.RBSet;
-import ds.RBTree.RBTree;
+import ds.bstree.BSTree;
+import ds.rbtree.RBMap;
+import ds.rbtree.RBSet;
+import ds.rbtree.RBTree;
 import ds.util.MyMap;
 import ds.util.MySet;
 

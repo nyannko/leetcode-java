@@ -1,4 +1,4 @@
-package ds.BSTree;
+package ds.bstree;
 
 public class BSTree<K extends Comparable<K>, V> {
 

@@ -1,17 +1,14 @@
-package ds.UnionFind;
+package ds.unionfind;
 
-public class UnionFind5 implements UF {
+public class UnionFind2 implements UF {
 
     private int[] parent;
-    private int[] rank;
 
-    public UnionFind5(int size) {
+    public UnionFind2(int size) {
         parent = new int[size];
-        rank = new int[size];
         for (int i = 0; i < size; i++) {
             // all nodes point to itself
             parent[i] = i;
-            rank[i] = 1;
         }
     }
 
@@ -31,8 +28,6 @@ public class UnionFind5 implements UF {
         }
 
         while (p != parent[p]) {
-            // path compression
-            parent[p] = parent[parent[p]];
             p = parent[p];
         }
         return p;
@@ -43,14 +38,8 @@ public class UnionFind5 implements UF {
         int pRoot = find(p);
         int qRoot = find(q);
 
-        // if p is lower than q
-        if (rank[pRoot] < rank[qRoot]) {
+        if (pRoot != qRoot) {
             parent[pRoot] = qRoot;
-        } else if (rank[pRoot] > rank[qRoot]) {
-            parent[qRoot] = pRoot;
-        } else {
-            parent[qRoot] = pRoot;
-            rank[pRoot]++;
         }
     }
 }

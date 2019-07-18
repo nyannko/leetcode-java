@@ -1,4 +1,4 @@
-package ds.UnionFind;
+package ds.unionfind;
 
 public interface UF {
     int getSize();

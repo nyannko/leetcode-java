@@ -1,11 +1,11 @@
-package ds.UnionFind;
+package ds.unionfind;
 
-public class UnionFind6 implements UF {
+public class UnionFind5 implements UF {
 
     private int[] parent;
     private int[] rank;
 
-    public UnionFind6(int size) {
+    public UnionFind5(int size) {
         parent = new int[size];
         rank = new int[size];
         for (int i = 0; i < size; i++) {
@@ -30,10 +30,12 @@ public class UnionFind6 implements UF {
             throw new IllegalArgumentException("p out of bound");
         }
 
-        // different path compression
-        if (p != parent[p])
-            p = find(parent[p]);
-        return parent[p];
+        while (p != parent[p]) {
+            // path compression
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
     }
 
     @Override

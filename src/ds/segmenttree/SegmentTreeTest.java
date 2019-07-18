@@ -1,4 +1,4 @@
-package ds.SegmentTree;
+package ds.segmenttree;
 
 public class SegmentTreeTest {
     public static void main(String[] args) {

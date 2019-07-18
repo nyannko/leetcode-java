@@ -1,4 +1,4 @@
-package ds.BTree;
+package ds.btree;
 
 import java.util.ArrayList;
 

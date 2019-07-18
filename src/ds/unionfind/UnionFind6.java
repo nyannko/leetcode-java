@@ -1,17 +1,17 @@
-package ds.UnionFind;
+package ds.unionfind;
 
-public class UnionFind3 implements UF {
+public class UnionFind6 implements UF {
 
     private int[] parent;
-    private int[] sz;
+    private int[] rank;
 
-    public UnionFind3(int size) {
+    public UnionFind6(int size) {
         parent = new int[size];
-        sz = new int[size];
+        rank = new int[size];
         for (int i = 0; i < size; i++) {
             // all nodes point to itself
             parent[i] = i;
-            sz[i] = 1;
+            rank[i] = 1;
         }
     }
 
@@ -25,15 +25,16 @@ public class UnionFind3 implements UF {
         return find(p) == find(q);
     }
 
+    // use recursion to find root
     private int find(int p) {
         if (p < 0 || p > parent.length - 1) {
             throw new IllegalArgumentException("p out of bound");
         }
 
-        while (p != parent[p]) {
-            p = parent[p];
-        }
-        return p;
+        // different path compression
+        if (p != parent[p])
+            p = find(parent[p]);
+        return parent[p];
     }
 
     @Override
@@ -41,12 +42,14 @@ public class UnionFind3 implements UF {
         int pRoot = find(p);
         int qRoot = find(q);
 
-        if (sz[pRoot] < sz[qRoot]) {
-            parent[pRoot] = qRoot; // attach pRoot(less children) to qRoot(more children)
-            sz[qRoot] += sz[pRoot];
+        // if p is lower than q
+        if (rank[pRoot] < rank[qRoot]) {
+            parent[pRoot] = qRoot;
+        } else if (rank[pRoot] > rank[qRoot]) {
+            parent[qRoot] = pRoot;
         } else {
             parent[qRoot] = pRoot;
-            sz[pRoot] += sz[qRoot];
+            rank[pRoot]++;
         }
     }
 }

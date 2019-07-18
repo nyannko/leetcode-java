@@ -1,4 +1,4 @@
-package ds.SegmentTree;
+package ds.segmenttree;
 
 public class SegmentTree<E> {
     private E[] tree;

@@ -1,4 +1,4 @@
-package ds.RBTree;
+package ds.rbtree;
 
 import java.util.ArrayList;
 

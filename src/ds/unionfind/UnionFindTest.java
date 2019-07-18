@@ -1,4 +1,4 @@
-package ds.UnionFind;
+package ds.unionfind;
 
 import java.util.Random;
 

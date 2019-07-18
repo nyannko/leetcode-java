@@ -1,17 +1,17 @@
-package ds.UnionFind;
+package ds.unionfind;
 
-public class UnionFind4 implements UF {
+public class UnionFind3 implements UF {
 
     private int[] parent;
-    private int[] rank;
+    private int[] sz;
 
-    public UnionFind4(int size) {
+    public UnionFind3(int size) {
         parent = new int[size];
-        rank = new int[size];
+        sz = new int[size];
         for (int i = 0; i < size; i++) {
             // all nodes point to itself
             parent[i] = i;
-            rank[i] = 1;
+            sz[i] = 1;
         }
     }
 
@@ -41,14 +41,12 @@ public class UnionFind4 implements UF {
         int pRoot = find(p);
         int qRoot = find(q);
 
-        // if p is lower than q
-        if (rank[pRoot] < rank[qRoot]) {
-            parent[pRoot] = qRoot;
-        } else if (rank[pRoot]> rank[qRoot]) {
-            parent[qRoot] = pRoot;
+        if (sz[pRoot] < sz[qRoot]) {
+            parent[pRoot] = qRoot; // attach pRoot(less children) to qRoot(more children)
+            sz[qRoot] += sz[pRoot];
         } else {
             parent[qRoot] = pRoot;
-            rank[pRoot]++;
+            sz[pRoot] += sz[qRoot];
         }
     }
 }
