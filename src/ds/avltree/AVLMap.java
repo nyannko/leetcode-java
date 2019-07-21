@@ -31,8 +31,8 @@ public class AVLMap<K extends Comparable<K>, V> implements MyMap<K, V> {
     }
 
     @Override
-    public void remove(K key) {
-        avl.remove(key);
+    public V remove(K key) {
+        return avl.remove(key);
     }
 
     @Override

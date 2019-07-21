@@ -9,7 +9,7 @@ public interface MyMap<K, V> {
 
     V get(K key);
 
-    void remove(K key);
+    V remove(K key);
 
     void set(K key, V value);
 

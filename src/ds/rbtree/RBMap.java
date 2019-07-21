@@ -31,7 +31,7 @@ public class RBMap<K extends Comparable<K>, V> implements MyMap<K, V> {
     }
 
     @Override
-    public void remove(K key) {
+    public V remove(K key) {
         throw new UnsupportedOperationException();
     }
 

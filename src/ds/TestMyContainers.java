@@ -3,6 +3,7 @@ package ds;
 import ds.avltree.AVLMap;
 import ds.avltree.AVLSet;
 import ds.avltree.AVLTree;
+import ds.hashtable.MyHashMap;
 import ds.util.FileOperation;
 import ds.bstree.BSTree;
 import ds.rbtree.RBMap;
@@ -91,6 +92,7 @@ public class TestMyContainers {
 
         AVLTree<Integer, Object> avl = new AVLTree<>();
         RBTree<Integer, Object> rbt = new RBTree<>();
+        MyHashMap<Integer, Object> map = new MyHashMap<>();
 
         double startTime, ElapsedTime;
 
@@ -121,6 +123,14 @@ public class TestMyContainers {
         ElapsedTime = (System.nanoTime() - startTime) / 1000000000;
         System.out.println("rbt: " + ElapsedTime + "s");
 
+        // hash map
+        startTime = System.nanoTime();
+        for (int i : testData) {
+            map.put(i, null);
+        }
+        ElapsedTime = (System.nanoTime() - startTime) / 1000000000;
+        System.out.println("rbt: " + ElapsedTime + "s");
+
     }
 
     public static void testOverallPerformance() {
@@ -131,9 +141,11 @@ public class TestMyContainers {
 
         System.out.println("AVLMap: " + testPerformance(avlmap, false) + "s");
         System.out.println("RBMap: " + testPerformance(rbmap, false) + "s");
+        System.out.println("HashMap: " + testPerformance(rbmap, false) + "s");
 
         System.out.println("AVLset: " + testPerformance(avlset, false) + "s");
         System.out.println("RBset: " + testPerformance(rbset, false) + "s");
+        System.out.println("HashMap: " + testPerformance(rbset, false) + "s");
     }
 
     public static void main(String[] args) {
@@ -144,5 +156,12 @@ public class TestMyContainers {
 //        testAdd(true); // why rb tree slow?
 //        avl: 5.649993156s
 //        rbt: 7.801314172s
+        testOverallPerformance();
+//        AVLMap: 0.46680822s
+//        RBMap: 0.286068629s
+//        HashMap: 0.296363908s
+//        AVLset: 0.136647355s
+//        RBset: 0.124001464s
+//        HashMap: 0.085759744s
     }
 }
