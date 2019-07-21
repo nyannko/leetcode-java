@@ -4,6 +4,7 @@ import ds.avltree.AVLMap;
 import ds.avltree.AVLSet;
 import ds.avltree.AVLTree;
 import ds.hashtable.MyHashMap;
+import ds.hashtable.MyHashMapResize;
 import ds.util.FileOperation;
 import ds.bstree.BSTree;
 import ds.rbtree.RBMap;
@@ -13,6 +14,7 @@ import ds.util.MyMap;
 import ds.util.MySet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -141,11 +143,9 @@ public class TestMyContainers {
 
         System.out.println("AVLMap: " + testPerformance(avlmap, false) + "s");
         System.out.println("RBMap: " + testPerformance(rbmap, false) + "s");
-        System.out.println("HashMap: " + testPerformance(rbmap, false) + "s");
 
         System.out.println("AVLset: " + testPerformance(avlset, false) + "s");
         System.out.println("RBset: " + testPerformance(rbset, false) + "s");
-        System.out.println("HashMap: " + testPerformance(rbset, false) + "s");
     }
 
     public static void main(String[] args) {
