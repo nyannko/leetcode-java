@@ -2,17 +2,24 @@ package ds.hashtable;
 
 import java.util.TreeMap;
 
-public class MyHashMapResize<K extends Comparable<K>, V> {
+public class MyHashMapPrimeCap<K extends Comparable<K>, V> {
+
+    // capacity for resized hash map
+    private final static int[] capacity = {
+            53, 97, 193, 389, 769, 1543, 3079, 6151, 12289, 24593,
+            49157, 98317, 196613, 393241, 786433, 1572869, 3145739, 6291469,
+            12582917, 25165843, 50331653, 100663319, 201326611, 402653189, 805306457, 1610612741
+    };
 
     private final static int upper = 10;
     private final static int lower = 2;
-    private final static int initCap = 7;
+    private int capIndex = 0;
 
     private TreeMap<K, V>[] hashMap;
     private int M;
     private int size;
 
-    public MyHashMapResize(int M) {
+    public MyHashMapPrimeCap(int M) {
         this.M = M;
         size = 0;
         hashMap = new TreeMap[M];
@@ -21,8 +28,8 @@ public class MyHashMapResize<K extends Comparable<K>, V> {
         }
     }
 
-    public MyHashMapResize() {
-        this(initCap);
+    public MyHashMapPrimeCap() {
+        this(capacity[0]);
     }
 
     private int hash(K key) {
@@ -46,8 +53,9 @@ public class MyHashMapResize<K extends Comparable<K>, V> {
         if (!map.containsKey(key))
             size++;
         map.put(key, value);
-        if (size >= upper * M) { //  N/M
-            resize(2 * M);
+        if (size >= upper * M && capIndex < capacity.length - 1) { //  N/M
+            capIndex++; // shift to next capacity
+            resize(capacity[capIndex]);
         }
     }
 
@@ -83,8 +91,9 @@ public class MyHashMapResize<K extends Comparable<K>, V> {
             res = map.remove(key);
             size--;
         }
-        if (size <= lower * M && M / 2 >= initCap) {
-            resize(M / 2);
+        if (size <= lower * M && capIndex - 1 >= 0) {
+            capIndex--;
+            resize(capacity[capIndex]);
         }
         return res;
     }
@@ -105,7 +114,5 @@ public class MyHashMapResize<K extends Comparable<K>, V> {
         }
         map.put(fruits[2], 90);
         System.out.println(fruits[2] + " " + map.get(fruits[2]));
-//        map.set("random", 10); // throw exception
-//        System.out.println(map.get("random")); // throw exception
     }
 }

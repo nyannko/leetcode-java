@@ -101,7 +101,7 @@ public class TestPerformance {
             // Test HashTable resize
             startTime = System.nanoTime();
 
-            MyHashMapResize<String, Integer> htr = new MyHashMapResize<>(131071);
+            MyHashMapResize<String, Integer> htr = new MyHashMapResize<>();
             for (String word : words) {
                 if (htr.contains(word))
                     htr.set(word, htr.get(word) + 1);
@@ -116,13 +116,31 @@ public class TestPerformance {
 
             time = (endTime - startTime) / 1000000000.0;
             System.out.println("HashTableResize: " + time + " s");
-        }
 
-        System.out.println();
+            // Test HashTable resize
+            startTime = System.nanoTime();
+
+            MyHashMapPrimeCap<String, Integer> hpc = new MyHashMapPrimeCap<>();
+            for (String word : words) {
+                if (hpc.contains(word))
+                    hpc.set(word, htr.get(word) + 1);
+                else
+                    hpc.put(word, 1);
+            }
+
+            for (String word : words)
+                hpc.contains(word);
+
+            endTime = System.nanoTime();
+
+            time = (endTime - startTime) / 1000000000.0;
+            System.out.println("HashTablePrimeCap: " + time + " s");
+        }
+    }
+}
+
 //        BST: 0.13800368 s
 //        AVL: 0.22473575 s
 //        RBTree: 0.155789205 s
 //        HashTable: 0.18004123 s
 //        HashTableResize: 0.101217013 s
-    }
-}
