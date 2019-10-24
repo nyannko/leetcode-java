@@ -3,6 +3,25 @@ import util.TreeNode;
 import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal {
+    // dfs
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(res, root, 0);
+        return res;
+    }
+
+    private void dfs(List<List<Integer>> res, TreeNode root, int level) {
+        if (root == null) return;
+        if (level >= res.size()) {
+            res.add(new LinkedList<>());
+            // res.add(0, new LinkedList<>());
+        }
+        dfs(res, root.left, level + 1);
+        dfs(res, root.right, level + 1);
+        res.get(level).add(root.val);
+//        res.get(res.size() - 1 - level).add(root.val);
+    }
+
     public List<List<Integer>> levelOrder1(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
         List<List<Integer>> res = new LinkedList<>();
